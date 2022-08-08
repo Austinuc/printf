@@ -26,16 +26,19 @@ int _printf(const char *format, ...)
 	{
 		if (*pr != '%')
 		{
-			write(1, pr, 1), len++, continue;
+			write(1, pr, 1), len++;
+			continue;
 		}
 
 		switch (*++pr)
 		{
 			case '%':
-				write(1, pr, 1), len++, break;
+				write(1, pr, 1), len++;
+				break;
 			case 'c':
 				cVal = va_arg(args, int);
-				write(1, &cVal, 1), len++, break;
+				write(1, &cVal, 1), len++;
+				break;
 			case 's':
 				for (sVal = va_arg(args, char *); *sVal;
 						sVal++)
@@ -44,7 +47,8 @@ int _printf(const char *format, ...)
 				}
 				break;
 			default:
-				write(1, pr, 1), len++, break;
+				write(1, pr, 1), len++;
+				break;
 		}
 	}
 	va_end(args);
