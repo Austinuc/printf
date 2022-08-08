@@ -47,11 +47,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
-
-
-int main()
-{
-	char c = 'Q'; char *st = "Uchechukwu";
-
-	return (_printf("Hello, %c, %s\n", c, st));
-}
