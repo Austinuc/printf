@@ -29,36 +29,7 @@ int _printf(const char *format, ...)
 		pr++;
 		select_fmt = select_format;
 		len += select_fmt(pr, args);
-/*
-		switch (*++pr)
-		{
-			case '%':
-				write(1, pr, 1), len++;
-				break;
-			case 'c':
-				cVal = va_arg(args, int);
-				write(1, &cVal, 1), len++;
-				break;
-			case 's':
-				for (sVal = va_arg(args, char *); *sVal;
-						sVal++)
-				{
-					write(1, sVal, 1), len++;
-				}
-				break;
-			default:
-				write(1, pr, 1), len++;
-				break;
-		} */
 	}
 	va_end(args);
 	return (len);
-}
-
-int main()
-{
-	char c = 'H';
-	char *st = "Austin";
-
-	return (_printf("Hello, %c, %s\n", c, st));
 }
