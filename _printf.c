@@ -12,8 +12,8 @@ int _printf(const char *format, ...)
 	const char *pr;
 	unsigned int len = 0;
 	va_list args;
-
 	int (*select_fmt)(const char *, va_list);
+
 	va_start(args, format);
 	if (!format || (*format == '%' && !format[1]))
 		return (-1);
@@ -32,4 +32,13 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (len);
+}
+
+int main()
+{
+	char c = 'C';
+	char *s = "String";
+	int d = 48, i = -980;
+
+	return (_printf("Hello, %%, c:%c, s:%s, d:%d, i:%i\n", c, s, d, i));
 }

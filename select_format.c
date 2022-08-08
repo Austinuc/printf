@@ -12,7 +12,7 @@ int select_format(const char *fmt, va_list args)
 {
 	int cVal;
 	char *sVal;
-	unsigned len = 0;
+	unsigned int len = 0;
 
 	switch (*fmt)
 	{
@@ -26,9 +26,11 @@ int select_format(const char *fmt, va_list args)
 		case 's':
 			for (sVal = va_arg(args, char *); *sVal;
 					sVal++)
-			{
 				write(1, sVal, 1), len++;
-			}
+			break;
+		case ('d' || 'i'):
+			cVal = va_arg(args, int);
+			len += printINT(cVal);
 			break;
 		default:
 			write(1, fmt, 1), len++;
