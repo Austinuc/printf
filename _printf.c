@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
 
 /**
   * _printf - formatted output conversion and print data to stdout
@@ -10,10 +12,11 @@
 int _printf(const char *format, ...)
 {
 	const char *pr;
+	int cVal;
+	char *sVal;
 	unsigned int len = 0;
 	va_list args;
 
-	int (*select_fmt)(const char *, va_list);
 	va_start(args, format);
 	if (!format || (*format == '%' && !format[1]))
 		return (-1);
@@ -26,10 +29,7 @@ int _printf(const char *format, ...)
 			write(1, pr, 1), len++;
 			continue;
 		}
-		pr++;
-		select_fmt = select_format;
-		len += select_fmt(pr, args);
-/*
+
 		switch (*++pr)
 		{
 			case '%':
@@ -49,16 +49,8 @@ int _printf(const char *format, ...)
 			default:
 				write(1, pr, 1), len++;
 				break;
-		} */
+		}
 	}
 	va_end(args);
 	return (len);
-}
-
-int main()
-{
-	char c = 'H';
-	char *st = "Austin";
-
-	return (_printf("Hello, %c, %s\n", c, st));
 }
