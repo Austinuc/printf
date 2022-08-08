@@ -33,12 +33,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
-
-int main()
-{
-	char c = 'C';
-	char *s = "String";
-	int d = 48, i = -980;
-
-	return (_printf("Hello, %%, c:%c, s:%s, d:%d, i:%i\n", c, s, d, i));
-}

@@ -28,7 +28,11 @@ int select_format(const char *fmt, va_list args)
 					sVal++)
 				write(1, sVal, 1), len++;
 			break;
-		case ('d' || 'i'):
+		case 'd':
+			cVal = va_arg(args, int);
+			len += printINT(cVal);
+			break;
+		case 'i':
 			cVal = va_arg(args, int);
 			len += printINT(cVal);
 			break;
