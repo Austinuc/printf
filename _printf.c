@@ -29,6 +29,10 @@ int _printf(const char *format, ...)
 
 		switch (*++pr)
 		{
+			case '%':
+				write(1, pr, 1);
+				len++;
+				break;
 			case 'c':
 				cVal = va_arg(args, int);
 				write(1, &cVal, 1);
@@ -42,6 +46,8 @@ int _printf(const char *format, ...)
 					len++;
 				}
 				break;
+			default:
+				write(1, pr, 1), len++, break;
 		}
 	}
 	va_end(args);
