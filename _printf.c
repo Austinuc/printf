@@ -18,6 +18,10 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
+	if (!format || (*format == '%' && !format[1]))
+		return (-1);
+	if (!(*format))
+		return (0);
 	for (pr = format; *pr; pr++)
 	{
 		if (*pr != '%')
