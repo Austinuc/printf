@@ -12,8 +12,8 @@ int _printf(const char *format, ...)
 	const char *pr;
 	unsigned int len = 0;
 	va_list args;
-
 	int (*select_fmt)(const char *, va_list);
+
 	va_start(args, format);
 	if (!format || (*format == '%' && !format[1]))
 		return (-1);
