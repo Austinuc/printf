@@ -18,11 +18,11 @@ int baseConversion(va_list args, char *str, unsigned int base)
 	int (*p_str)(va_list, char *, unsigned int);
 
 	*ptr = '\0';
-	*str = '\0';
+	str = "Hello";
 	do {
 		*--ptr = converted[(num % base)];
 		num /= base;
-	} while (num != 0);
+	} while (num != 0 && str);
 	p_str = printStr;
 	return (p_str(args, ptr, base));
 }

@@ -11,9 +11,12 @@
 
 int printChar(va_list args, char *str, unsigned int base)
 {
-	char c = va_arg(args, int), len = 0;
+	char c = va_arg(args, int);
+	int len = 0;
 
-	*str = '\0';
+	str = "Hello";
+	if (!c && str)
+		return (-1);
 	write(1, &c, 1);
 	c = (char)base;
 	return (++len);
