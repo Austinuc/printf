@@ -13,6 +13,8 @@ int printChar(va_list args, char *str, unsigned int base)
 {
 	char c = va_arg(args, int), len = 0;
 
+	*str = '\0';
 	write(1, &c, 1);
+	c = (char)base;
 	return (++len);
 }

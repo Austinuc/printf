@@ -11,16 +11,15 @@
 
 int printStr(va_list args, char *str, unsigned int base)
 {
-	unsigned int len = 0;
+	unsigned int len = 0, temp = len;
 	char *ptr;
 
-	base = 0;
 	if (!str)
 	{
 		ptr = va_arg(args, char *);
 		while (*ptr != '\0')
 		{
-			write(1, ptr, 1), len++;
+			write(1, ptr, 1), len++, temp++;
 			ptr++;
 		}
 	}
@@ -32,5 +31,6 @@ int printStr(va_list args, char *str, unsigned int base)
 			str++;
 		}
 	}
+	temp = base;
 	return (len);
 }
