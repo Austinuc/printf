@@ -10,7 +10,8 @@
 int _printf(const char *format, ...)
 {
 	const char *pr;
-	unsigned int len = 0;
+	unsigned int len = 0, base, i = 0, b[] = {2, 8, 16, 17};
+	char arr[] = "boxX";
 	va_list args;
 	int (*select_fmt)(va_list, char *, unsigned int);
 
@@ -29,18 +30,18 @@ int _printf(const char *format, ...)
 		pr++;
 		if (*pr == '\0')
 			return (-1);
-		if (*pr == '%')
+		for (i = 0; i < 4; i++)
 		{
-			write(1, pr, 1), len++;
-			continue;
+			if (*pr == arr[i])
+				base = b[i], i = 9;
 		}
 		select_fmt = select_format(pr);
 		if (select_fmt == NULL)
 		{
-			printStr(args, "Unkwown specifier after '%'\n", 0);
-			return (-1);
+			write(1, pr, 1);
+			continue;
 		}
-		len += select_fmt(args, NULL, 2);
+		len += select_fmt(args, NULL, base);
 	}
 	va_end(args);
 	return (len);

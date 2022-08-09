@@ -14,13 +14,22 @@ int (*select_format(const char *fmt))(va_list args, char *str, unsigned int b)
 		{"s", printStr},
 		{"d", printInt},
 		{"i", printInt},
+		{"u", printUint},
 		{"b", baseConversion},
+		{"o", baseConversion},
+		{"x", baseConversion},
+		{"X", baseConversion},
 		{NULL, NULL}
 	};
 	int i = 0;
 
 	while (ops[i].spec)
 	{
+		if (!(ops[i + 1].spec) && ops[i].spec[0] != *fmt)
+		{
+			i++;
+			break;
+		}
 		if (ops[i].spec[0] == *fmt)
 			break;
 		i++;
