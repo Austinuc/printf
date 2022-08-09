@@ -2,16 +2,28 @@
 
 /**
   * baseConversion - converts unsigned int to binary
-  * @num: input number
+  * @args: variable lists
   * @base: base to be converted to
+  * @str: NULL
   *
   * Return: number in converted base
   */
 
-int baseConversion(unsigned int num, int base)
+int baseConversion(va_list args, char *str, unsigned int base)
 {
-	int base[64];
-	int *ptr = base[62];
+	char arr[64];
+	char converted[] = "0123456789ABCDEF";
+	char *ptr = &arr[63];
+	unsigned int num = va_arg(args, unsigned int);
+	int (*p_str)(va_list, char *, unsigned int);
 
-	base[63] = '\0';
+	str = NULL;
+	*ptr = '\0';
+
+	do {
+		*--ptr = converted[(num % base)];
+		num /= base;
+	} while (num != 0);
+	p_str = printStr;
+	return (p_str(args, ptr, base));
 }
