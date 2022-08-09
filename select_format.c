@@ -3,42 +3,27 @@
 /**
   * select_format - Selects format to print
   * @fmt: input string
-  * @args: va_list
   *
   * Return: string length
   */
 
-int select_format(const char *fmt, va_list args)
+int (*select_format(char *fmt))(va_list args, char *str, unsigned int base)
 {
-	int cVal;
-	char *sVal;
-	unsigned int len = 0;
+	print_t ops[] = {
+		{"c", printChar},
+		{"s", printStr},
+		{"d", printInt},
+		{"i", printInt},
+		{"b", baseConversion},
+		{NULL, NULL}
+	};
+	int i = 0;
 
-	switch (*fmt)
+	while (ops[i].spec)
 	{
-		case '%':
-			write(1, fmt, 1), len++;
+		if (ops[i].spec[0] == *fmt)
 			break;
-		case 'c':
-			cVal = va_arg(args, int);
-			write(1, &cVal, 1), len++;
-			break;
-		case 's':
-			for (sVal = va_arg(args, char *); *sVal;
-					sVal++)
-				write(1, sVal, 1), len++;
-			break;
-		case 'd':
-			cVal = va_arg(args, int);
-			len += printINT(cVal);
-			break;
-		case 'i':
-			cVal = va_arg(args, int);
-			len += printINT(cVal);
-			break;
-		default:
-			write(1, fmt, 1), len++;
-			break;
+		i++;
 	}
-	return (len);
+	return (ops[i].f);
 }

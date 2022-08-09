@@ -1,18 +1,23 @@
 #include "main.h"
 
 /**
-  * printINT - prints d & i specifiers to stdout
-  * @num: input number to print
+  * printInt - prints d & i specifiers to stdout
+  * @str: NULL
+  * @args: variable list
+  * @base: NULL
   *
   * Return: number of digits printed
   */
 
-int printINT(int num)
+int printInt(va_list args, char *str, unsigned int base)
 {
+	int num = va_arg(args, int);
 	unsigned int i = 0;
 	char n = '-';
 	int temp = 1000000000;
 
+	str = NULL;
+	base = 0;
 	if (num < 0)
 	{
 		write(1, &n, 1), num = -1 * num;

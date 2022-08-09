@@ -27,7 +27,7 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		pr++;
-		if (*pr == '\0')
+		if(*pr == '\0')
 			return (-1);
 		if (*pr == '%')
 		{
@@ -45,3 +45,12 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
+/*
+int main()
+{
+	char c = 'Q';
+	char *s = "String";
+	int d = 98, i = -890;
+
+	return (_printf("Hello, %%, c:%c, s:%s, b:%b, i:%i, :%", c, s, d, i));
+}*/
