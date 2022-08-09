@@ -9,7 +9,7 @@
 
 int _printf(const char *format, ...)
 {
-	char *pr;
+	const char *pr;
 	unsigned int len = 0;
 	va_list args;
 	int (*select_fmt)(va_list, char *, unsigned int);
@@ -44,4 +44,12 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (len);
+}
+int main()
+{
+	char c = 'Q';
+	char *s = "String";
+	int d = 98, i = -890;
+
+	return (_printf("Hello, %%, c:%c, s:%s, b:%b, i:%i, :%", c, s, d, i));
 }
