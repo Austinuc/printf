@@ -16,8 +16,7 @@ int printInt(va_list args, char *str, unsigned int base)
 	char n = '-';
 	int temp = 1000000000;
 
-	str = NULL;
-	base = 0;
+	*str = '\0';
 	if (num < 0)
 	{
 		write(1, &n, 1), num = -1 * num;
@@ -40,5 +39,6 @@ int printInt(va_list args, char *str, unsigned int base)
 	n = ((num / temp) + 48), write(1, &n, 1);
 	n = ((num % temp) + 48), write(1, &n, 1), i += 2;
 
+	n = (char)base;
 	return (i);
 }

@@ -17,9 +17,8 @@ int baseConversion(va_list args, char *str, unsigned int base)
 	unsigned int num = va_arg(args, unsigned int);
 	int (*p_str)(va_list, char *, unsigned int);
 
-	str = NULL;
 	*ptr = '\0';
-
+	*str = '\0';
 	do {
 		*--ptr = converted[(num % base)];
 		num /= base;
