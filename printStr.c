@@ -17,6 +17,8 @@ int printStr(va_list args, char *str, unsigned int base)
 	if (!str)
 	{
 		ptr = va_arg(args, char *);
+		if (!ptr)
+			return (-1);
 		while (*ptr != '\0')
 		{
 			write(1, ptr, 1), len++, temp++;

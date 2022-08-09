@@ -16,7 +16,9 @@ int printInt(va_list args, char *str, unsigned int base)
 	char n = '-';
 	int temp = 1000000000;
 
-	*str = '\0';
+	str = "Hello";
+	if (!num && str)
+		return (-1);
 	if (num < 0)
 	{
 		write(1, &n, 1), num = -1 * num;
