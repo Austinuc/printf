@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 int _printf(const char *format, ...);
-int (*select_format(char *fmt))(va_list, char *, unsigned int);
+int (*select_format(const char *fmt))(va_list, char *, unsigned int);
 int printInt(va_list, char *, unsigned int);
 int printStr(va_list, char *, unsigned int);
 int printChar(va_list, char *, unsigned int);

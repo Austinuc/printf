@@ -9,7 +9,7 @@
 
 int _printf(const char *format, ...)
 {
-	char *pr;
+	const char *pr;
 	unsigned int len = 0;
 	va_list args;
 	int (*select_fmt)(va_list, char *, unsigned int);

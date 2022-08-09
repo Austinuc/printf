@@ -7,7 +7,7 @@
   * Return: string length
   */
 
-int (*select_format(char *fmt))(va_list args, char *str, unsigned int base)
+int (*select_format(const char *fmt))(va_list args, char *str, unsigned int base)
 {
 	print_t ops[] = {
 		{"c", printChar},
