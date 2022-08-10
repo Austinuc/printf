@@ -9,8 +9,9 @@
 
 int _printf(const char *format, ...)
 {
-	char *pr;
-	unsigned int len = 0;
+	const char *pr;
+	unsigned int len = 0, base, i = 0, b[] = {2, 8, 16, 17, 16};
+	char arr[] = "boxXp";
 	va_list args;
 	int (*select_fmt)(va_list, char *, unsigned int);
 
@@ -27,30 +28,28 @@ int _printf(const char *format, ...)
 			continue;
 		}
 		pr++;
-		if(*pr == '\0')
+		if (*pr == '\0')
 			return (-1);
-		if (*pr == '%')
+		for (i = 0; i < 5; i++)
 		{
-			write(1, pr, 1), len++;
-			continue;
+			if (*pr == arr[i])
+				base = b[i], i = 9;
 		}
 		select_fmt = select_format(pr);
 		if (select_fmt == NULL)
 		{
-			printStr(args, "Unkwown specifier after '%'\n", 0);
-			return (-1);
+			write(1, pr, 1), len++;
+			continue;
 		}
-		len += select_fmt(args, NULL, 2);
+		len += select_fmt(args, (char *)pr, base);
 	}
 	va_end(args);
 	return (len);
 }
-/*
-int main()
-{
-	char c = 'Q';
-	char *s = "String";
-	int d = 98, i = -890;
 
-	return (_printf("Hello, %%, c:%c, s:%s, b:%b, i:%i, :%", c, s, d, i));
-}*/
+int main(void)
+{
+	char *p = "hello", c = 'C', *s = "String", *S = "Best\nSchool";
+	int d = -890, i = 9, b = 98, u = 13, o = 21, x = 10, X = 10;
+	return (_printf("%%,\np: %p,\nc: %c,\ns: %s\nS: %S\nd: %d\ni: %i\nb: %b\nu: %u\no: %o\nx: %x\nX: %X\n", p, c, s, S, d, i, b, u, o, x, X));
+}

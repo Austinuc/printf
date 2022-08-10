@@ -12,6 +12,7 @@ int (*select_format(const char *fmt))(va_list args, char *str, unsigned int b)
 	print_t ops[] = {
 		{"c", printChar},
 		{"s", printStr},
+		{"S", printAllStr},
 		{"d", printInt},
 		{"i", printInt},
 		{"u", printUint},
@@ -19,6 +20,7 @@ int (*select_format(const char *fmt))(va_list args, char *str, unsigned int b)
 		{"o", baseConversion},
 		{"x", baseConversion},
 		{"X", baseConversion},
+		{"p", printAllStr},
 		{NULL, NULL}
 	};
 	int i = 0;
