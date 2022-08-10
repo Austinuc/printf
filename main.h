@@ -10,8 +10,10 @@ int (*select_format(const char *fmt))(va_list, char *, unsigned int);
 int printInt(va_list, char *, unsigned int);
 int printUint(va_list, char *, unsigned int);
 int printStr(va_list, char *, unsigned int);
+int printAllStr(va_list, char *, unsigned int);
 int printChar(va_list, char *, unsigned int);
 int baseConversion(va_list, char *, unsigned int);
+int baseHexConversion(va_list, char *, unsigned int);
 
 /**
   * struct print_type - Structure for type formats

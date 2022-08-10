@@ -10,8 +10,8 @@
 int _printf(const char *format, ...)
 {
 	const char *pr;
-	unsigned int len = 0, base, i = 0, b[] = {2, 8, 16, 17};
-	char arr[] = "boxX";
+	unsigned int len = 0, base, i = 0, b[] = {2, 8, 16, 17, 16};
+	char arr[] = "boxXp";
 	va_list args;
 	int (*select_fmt)(va_list, char *, unsigned int);
 
@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 		pr++;
 		if (*pr == '\0')
 			return (-1);
-		for (i = 0; i < 4; i++)
+		for (i = 0; i < 5; i++)
 		{
 			if (*pr == arr[i])
 				base = b[i], i = 9;
@@ -38,10 +38,10 @@ int _printf(const char *format, ...)
 		select_fmt = select_format(pr);
 		if (select_fmt == NULL)
 		{
-			write(1, pr, 1);
+			write(1, pr, 1), len++;
 			continue;
 		}
-		len += select_fmt(args, NULL, base);
+		len += select_fmt(args, (char *)pr, base);
 	}
 	va_end(args);
 	return (len);
