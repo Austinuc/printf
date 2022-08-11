@@ -48,8 +48,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (len);
 }
-
-int main(void)
-{
-	return (_printf("%p", 0x7fff5100b608));
-}
