@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
   * _printf - formatted output conversion and print data to stdout
@@ -18,8 +19,8 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	if (!format || (*format == '%' && !format[1]))
 		return (-1);
-	if (!(*format))
-		return (0);
+	if (!(format))
+		return (-1);
 	for (pr = format; *pr; pr++)
 	{
 		if (*pr != '%')
@@ -38,11 +39,17 @@ int _printf(const char *format, ...)
 		select_fmt = select_format(pr);
 		if (select_fmt == NULL)
 		{
-			write(1, pr, 1), len++;
+			--pr;
+			write(1, pr, 2), len += 2, ++pr;
 			continue;
 		}
 		len += select_fmt(args, (char *)pr, base);
 	}
 	va_end(args);
 	return (len);
+}
+
+int main(void)
+{
+	return (_printf("%p", 0x7fff5100b608));
 }

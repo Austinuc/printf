@@ -11,6 +11,7 @@ int (*select_format(const char *fmt))(va_list args, char *str, unsigned int b)
 {
 	print_t ops[] = {
 		{"c", printChar},
+		{"%", printChar},
 		{"s", printStr},
 		{"S", printAllStr},
 		{"d", printInt},

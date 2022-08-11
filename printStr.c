@@ -12,13 +12,16 @@
 int printStr(va_list args, char *str, unsigned int base)
 {
 	unsigned int len = 0, temp = len;
-	char *ptr;
+	char *ptr, *nul = "(null)";
 
 	if (args)
 	{
 		ptr = va_arg(args, char *);
 		if (!ptr)
-			return (-1);
+		{
+			write(1, nul, 6);
+			return (6);
+		}
 		while (*ptr != '\0')
 		{
 			write(1, ptr, 1), len++, temp++;
@@ -65,9 +68,11 @@ int printAllStr(va_list args, char *str, unsigned int base)
 	{
 		s = va_arg(args, char *);
 		hex = "\\x";
+		if (*s == '0' && *(s + 1) == 'x')
+			return (printStr(NULL, s, 9));
 		for (; *s; i++, s++)
 		{
-			if (*s >= 32 && *s < 127 && str)
+			if (*s >= 32 && *s < 127)
 				write(1, s, 1), len++;
 			else
 			{
