@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
-  * baseConversion - converts unsigned int to binary
+  * baseConversion - converts unsigned int to hexadecimal
   * @args: variable lists
-  * @base: base to be converted to
+  * @base: base to be converted to - 16 in this case
   * @str: NULL
   *
   * Return: number in converted base
@@ -37,10 +37,10 @@ int baseConversion(va_list args, char *str, unsigned int base)
 }
 
 /**
-  * baseHexConversion - converts unsigned int to binary
+  * baseHexConversion - converts unsigned int to any base
   * @args: variable lists
   * @base: base to be converted to
-  * @str: NULL
+  * @str: input string of numbers
   *
   * Return: number in converted base
   */
